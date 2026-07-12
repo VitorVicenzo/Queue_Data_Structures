@@ -1,20 +1,20 @@
 package edu.vitor.dio.queue;
 
-public class Queue {
+public class Queue<T> {
 
-    private Node refEnterQueue;
+    private Node<T> refEnterQueue;
 
     public Queue(){
         this.refEnterQueue = null;
     }
 
-    public void enqueue(Object obj){
-        Node newNode = new Node(obj);
+    public void enqueue(T object){
+        Node newNode = new Node(object);
         newNode.setRefNode(refEnterQueue);
         refEnterQueue = newNode;
     }
 
-    public Object first(){
+    public T first(){
         if (!this.isEmpty()){
             Node firstNode = refEnterQueue;
             while (true){
@@ -24,12 +24,12 @@ public class Queue {
                     break;
                 }
             }
-            return firstNode.getObject();
+            return (T) firstNode.getObject();
         }
         return null;
     }
 
-    public Object dequeue(){
+    public T dequeue(){
         if (!this.isEmpty()){
             Node firstNode = refEnterQueue;
             Node nodeAuxiliar = refEnterQueue;
@@ -42,7 +42,7 @@ public class Queue {
                     break;
                 }
             }
-            return firstNode.getObject();
+            return (T) firstNode.getObject();
         }
         return null;
     }
